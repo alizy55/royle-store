@@ -1,0 +1,112 @@
+{
+  "info": {
+    "name": "SMV-ECOM API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🔐 Authentication",
+      "item": [
+        {
+          "name": "Login as Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@royalstore.com\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": "http://127.0.0.1:5000/api/auth/login"
+          }
+        },
+        {
+          "name": "Login as Seller",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"seller@royalstore.com\",\n  \"password\": \"Seller@123\"\n}"
+            },
+            "url": "http://127.0.0.1:5000/api/auth/login"
+          }
+        },
+        {
+          "name": "Login as Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@royalstore.com\",\n  \"password\": \"Customer@123\"\n}"
+            },
+            "url": "http://127.0.0.1:5000/api/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📁 Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:5000/api/categories"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📦 Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:5000/api/products"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🛒 Cart",
+      "item": [
+        {
+          "name": "Get Cart (Need Auth)",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:5000/api/cart"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Orders",
+      "item": [
+        {
+          "name": "Get My Orders",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:5000/api/orders/my-orders"
+          }
+        }
+      ]
+    }
+  ]
+}
