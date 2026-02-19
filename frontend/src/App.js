@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
 import SellerDashboard from './pages/SellerDashboard';
 import CustomerDashboard from './pages/CustomerDashboard';
@@ -20,85 +21,86 @@ const ProtectedRoute = ({
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     if (!token) {
-        return < Navigate to = "/login"
-        replace / > ;
+        return < Navigate to="/login"
+            replace />;
     }
 
     if (allowedRoles && !allowedRoles.includes(user.role)) {
-        return < Navigate to = "/login"
-        replace / > ;
+        return < Navigate to="/login"
+            replace />;
     }
 
     return children;
 };
 
 function App() {
-    return ( <
+    return (<
         ErrorBoundary >
         <
         Router >
-        <
+            <
         Routes >
-        <
-        Route path = "/login"
-        element = {
-            < Login / >
-        }
-        />
+                <Route path="/register" element={<Register />} />
+                <
+                    Route path="/login"
+                    element={
+                        < Login />
+                    }
+                />
 
-        <
-        Route path = "/admin"
-        element = {
-            <
-            ProtectedRoute allowedRoles = {
-                ['admin']
-            } >
-            <
-            AdminDashboard / >
-            <
+                <
+                    Route path="/admin"
+                    element={
+                        <
+            ProtectedRoute allowedRoles={
+                                ['admin']
+                            } >
+                            <
+                                AdminDashboard />
+                            <
             /ProtectedRoute>
         }
         />
 
-        <
-        Route path = "/seller"
-        element = {
-            <
-            ProtectedRoute allowedRoles = {
-                ['seller']
-            } >
-            <
-            SellerDashboard / >
-            <
+                            <
+                                Route path="/seller"
+                                element={
+                                    <
+            ProtectedRoute allowedRoles={
+                                            ['seller']
+                                        } >
+                                        <
+                                            SellerDashboard />
+                                        <
             /ProtectedRoute>
         }
         />
 
-        <
-        Route path = "/customer"
-        element = {
-            <
-            ProtectedRoute allowedRoles = {
-                ['customer']
-            } >
-            <
-            CustomerDashboard / >
-            <
+                                        <
+                                            Route path="/customer"
+                                            element={
+                                                <
+            ProtectedRoute allowedRoles={
+                                                        ['customer']
+                                                    } >
+                                                    <
+                                                        CustomerDashboard />
+                                                    <
             /ProtectedRoute>
         }
         />
 
-        <
-        Route path = "/"
-        element = {
-            < Navigate to = "/login"
-            replace / >
-        }
-        /> <
+                                                    <
+                                                        Route path="/"
+                                                        element={
+                                                            < Navigate to="/login"
+                                                                replace />
+                                                        }
+                                                    /> <
         /Routes> <
         /Router> <
         /ErrorBoundary>
-    );
+                                                    );
 }
 
-export default App;
+                                                    export default App;

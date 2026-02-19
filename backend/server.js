@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
@@ -12,12 +13,12 @@ app.use(express.urlencoded({
 })); // This parses form data
 
 // MongoDB Connection
-const MONGODB_URI = 'mongodb://127.0.0.1:27017/royal-store';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/royal-store';
 
 mongoose.connect(MONGODB_URI, {
-        serverSelectionTimeoutMS: 5000,
-        socketTimeoutMS: 45000,
-    })
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+})
     .then(() => console.log('✅ MongoDB Connected'))
     .catch(err => console.log('❌ MongoDB Error:', err.message));
 
@@ -39,6 +40,10 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/cart', cartRoutes);
 
+// ✅ Valid Root Routes
+app.get('/', (req, res) => res.send('✅ Royal Store Backend is Running! Access API at /api'));
+app.get('/api', (req, res) => res.json({ message: 'Welcome to Royal Store API', status: 'Running' }));
+
 // Test routes
 app.get('/test', (req, res) => res.json({
     message: 'Server working'
@@ -56,7 +61,7 @@ app.post('/api/test-body', (req, res) => {
 });
 
 // Start server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('=================================');
     console.log(`✅ SERVER RUNNING on port ${PORT}`);
